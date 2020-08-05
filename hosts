@@ -1,0 +1,20 @@
+[jumpbox]
+bastion # ansible_host=bastion.e2fc.example.opentlc.com
+
+[frontends]
+frontend1 ansible_host=frontend1.e2fc.internal
+
+[apps]
+app1 ansible_host=app1.e2fc.internal
+app2 ansible_host=app2.e2fc.internal
+
+[appdbs]
+appdb1 ansible_host=appdb1.e2fc.internal
+
+[internal:children]
+frontends
+apps
+appdbs
+
+[all:vars]
+GUID="{{ lookup('env', 'GUID') }}"
